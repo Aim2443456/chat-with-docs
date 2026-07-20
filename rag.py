@@ -118,7 +118,6 @@ def main():
 
     index = None
     chunks = None
-    current_doc = None
 
     while True:
         if index is None:
@@ -132,15 +131,12 @@ def main():
             if choice == "1":
                 pdf_path = input("\nEnter full file path:\n> ").strip()
                 pdf_path = pdf_path.strip('"')
-
             elif choice == "2":
                 filename = input("\nEnter filename (include .pdf):\n> ").strip()
                 pdf_path = os.path.join(os.getcwd(), filename)
-
             elif choice == "3":
                 print("Goodbye!")
                 break
-
             else:
                 print("Invalid choice. Try again.")
                 continue
@@ -152,8 +148,7 @@ def main():
                 print("Failed to load document. Try again.")
                 continue
 
-            current_doc = os.path.basename(pdf_path)
-            print(f"\nDocument loaded: {current_doc}")
+            print(f"\nDocument loaded successfully!")
             print("You can now ask questions about it.")
             print("Type 'new' to load a different document.")
             print("Type 'quit' to exit.")
@@ -164,20 +159,16 @@ def main():
         if question.lower() == "quit":
             print("Goodbye!")
             break
-
         elif question.lower() == "new":
             index = None
             chunks = None
-            current_doc = None
             print("\nLoading new document...")
             continue
-
         elif not question:
             continue
 
         print("\nSearching document...")
         answer, citations = ask(question, index, chunks)
-
         print(f"\nAnswer:\n{answer}")
         print(f"\nSources: {', '.join(set(citations))}")
         print("-" * 50)
