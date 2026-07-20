@@ -1,0 +1,9 @@
+streamlit
+gtts
+PyMuPDF
+faiss-cpu
+sentence-transformers
+groq
+python-dotenv
+duckduckgo-search
+numpy
